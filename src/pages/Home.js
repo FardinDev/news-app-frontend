@@ -2,6 +2,8 @@ import { EditOutlined, EllipsisOutlined, SettingOutlined } from '@ant-design/ico
 import { Avatar, Card, Carousel, Col, Divider, Row, Typography } from 'antd'
 import Meta from 'antd/es/card/Meta';
 import React from 'react'
+import HomeFeedCard from '../components/cards/HomeFeedCard';
+import InfiniteList from '../components/list/InfiniteList';
 
 const { Title } = Typography;
 function Home() {
@@ -35,95 +37,14 @@ function Home() {
 
             <Title level={2}>Feed</Title>
 
-            <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
-                <Col className="gutter-row" xs={12} sm={24} md={12} lg={6} xl={6}>
-                    <Card
-                        style={{ width: 150 }}
-                        cover={
-                            <img
-                                alt="example"
-                                src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
-                            />
-                        }
-                        actions={[
-                            <SettingOutlined key="setting" />,
-                            <EditOutlined key="edit" />,
-                            <EllipsisOutlined key="ellipsis" />,
-                        ]}
-                    >
-                        <Meta
-                            avatar={<Avatar src="https://xsgames.co/randomusers/avatar.php?g=pixel" />}
-                            title="Card title"
-                            description="This is the description"
-                        />
-                    </Card>
+            <Row gutter={{ xs: 32, sm: 32, md: 24, lg: 32 }}>
+                <Col xs={24} sm={12} md={12} lg={18} xl={18}>
+                    <InfiniteList />
                 </Col>
-                <Col className="gutter-row" xs={12} sm={24} md={12} lg={6} xl={6}>
-                    <Card
-                        style={{ width: 150 }}
-                        cover={
-                            <img
-                                alt="example"
-                                src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
-                            />
-                        }
-                        actions={[
-                            <SettingOutlined key="setting" />,
-                            <EditOutlined key="edit" />,
-                            <EllipsisOutlined key="ellipsis" />,
-                        ]}
-                    >
-                        <Meta
-                            avatar={<Avatar src="https://xsgames.co/randomusers/avatar.php?g=pixel" />}
-                            title="Card title"
-                            description="This is the description"
-                        />
-                    </Card>
+                <Col className="gutter-row" xs={24} sm={12} md={12} lg={6} xl={6}>
+                    <HomeFeedCard />
                 </Col>
-                <Col className="gutter-row" xs={24} sm={24} md={12} lg={6} xl={6}>
-                    <Card
-                        style={{ width: 300 }}
-                        cover={
-                            <img
-                                alt="example"
-                                src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
-                            />
-                        }
-                        actions={[
-                            <SettingOutlined key="setting" />,
-                            <EditOutlined key="edit" />,
-                            <EllipsisOutlined key="ellipsis" />,
-                        ]}
-                    >
-                        <Meta
-                            avatar={<Avatar src="https://xsgames.co/randomusers/avatar.php?g=pixel" />}
-                            title="Card title"
-                            description="This is the description"
-                        />
-                    </Card>
-                </Col>
-                <Col className="gutter-row" xs={24} sm={24} md={12} lg={6} xl={6}>
-                    <Card
-                        style={{ width: 300 }}
-                        cover={
-                            <img
-                                alt="example"
-                                src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
-                            />
-                        }
-                        actions={[
-                            <SettingOutlined key="setting" />,
-                            <EditOutlined key="edit" />,
-                            <EllipsisOutlined key="ellipsis" />,
-                        ]}
-                    >
-                        <Meta
-                            avatar={<Avatar src="https://xsgames.co/randomusers/avatar.php?g=pixel" />}
-                            title="Card title"
-                            description="This is the description"
-                        />
-                    </Card>
-                </Col>
+
             </Row>
 
 
