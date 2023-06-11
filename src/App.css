@@ -15,7 +15,11 @@
 .nav-header {
   background-color: white;
   border-bottom: 0;
-  padding: 0 4px 0 24px;
+  padding: 0 48px 0 48px;
+}
+
+.pill-nav {
+  padding: 0 80px;
 }
 
 .logo {
@@ -51,6 +55,10 @@
 }
 
 .navbar-menu .rightMenu {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
   float: right;
 }
 
@@ -89,6 +97,11 @@
 
 .site-layout {
   padding: 0 50px;
+  margin-top: 20px;
+}
+
+.gutter-row {
+  margin-bottom: 10px;
 }
 
 @media (max-width: 767px) {
@@ -116,6 +129,24 @@
 
   .site-layout {
     padding: 0 20px;
+    margin-top: 10px;
+  }
+
+  .nav-header {
+    padding: 0 4px 0 20px;
+  }
+
+  .pill-nav {
+    padding: 0 4px;
+  }
+
+  .hide-on-mobile {
+    display: none !important;
+  }
+
+  .gutter-row {
+    display: flex;
+    justify-content: center;
   }
 
 }

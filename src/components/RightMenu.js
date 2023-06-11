@@ -13,6 +13,7 @@ const RightMenu = ({ mode }) => {
         <Menu mode={mode}>
             {authLoading ? <></> : <>
                 {authenticated ? <SubMenu
+                    key={'first-submenu'}
                     title={
                         <>
                             <Avatar icon={<UserOutlined />} />

@@ -14,6 +14,7 @@ root.render(
         algorithm: theme.defaultAlgorithm,
         token: {
           colorPrimary: '#00b96b',
+          fontFamily: 'sans-serif',
         },
       }}
     >
