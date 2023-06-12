@@ -104,6 +104,10 @@
   margin-bottom: 10px;
 }
 
+.demo-loadmore-list {
+  min-height: 350px;
+}
+
 @media (max-width: 767px) {
   .menuButton {
     display: block;

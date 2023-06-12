@@ -1,6 +1,5 @@
-import { EditOutlined, EllipsisOutlined, SettingOutlined } from '@ant-design/icons';
-import { Avatar, Card, Carousel, Col, Divider, Row, Typography } from 'antd'
-import Meta from 'antd/es/card/Meta';
+
+import { Col, Row, Typography } from 'antd'
 import React from 'react'
 import HomeFeedCard from '../components/cards/HomeFeedCard';
 import InfiniteList from '../components/list/InfiniteList';
@@ -8,16 +7,10 @@ import InfiniteList from '../components/list/InfiniteList';
 const { Title } = Typography;
 function Home() {
 
-    const contentStyle = {
-        height: '260px',
-        color: '#fff',
-        lineHeight: '260px',
-        textAlign: 'center',
-        background: '#364d79',
-    };
+
     return (
         <div>
-            <Title level={2}>Top News</Title>
+            {/* <Title level={2}>Top News</Title>
             <Carousel autoplay effect="fade">
                 <div>
                     <h3 style={contentStyle}>1</h3>
@@ -33,7 +26,7 @@ function Home() {
                 </div>
             </Carousel>
 
-            <Divider />
+            <Divider /> */}
 
             <Title level={2}>Feed</Title>
 
