@@ -9,7 +9,7 @@ function Home() {
 
 
     return (
-        <div>
+        <div style={{ marginBottom: 40 }}>
             {/* <Title level={2}>Top News</Title>
             <Carousel autoplay effect="fade">
                 <div>
@@ -34,7 +34,7 @@ function Home() {
                 <Col xs={24} sm={12} md={12} lg={18} xl={18}>
                     <InfiniteList />
                 </Col>
-                <Col className="gutter-row" xs={24} sm={12} md={12} lg={6} xl={6}>
+                <Col className="gutter-row hide-on-mobile" xs={0} sm={0} md={12} lg={6} xl={6}>
                     <HomeFeedCard />
                 </Col>
 

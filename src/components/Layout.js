@@ -1,13 +1,14 @@
-import { Outlet, Link, useLocation } from "react-router-dom";
-import { Layout as AntLayout, Button, Col, Divider, Drawer, Dropdown, Row, Space, Typography } from "antd";
+import { Outlet, useLocation } from "react-router-dom";
+import { Layout as AntLayout, Button, Drawer, Dropdown, FloatButton, Space, } from "antd";
 import { useEffect, useState } from "react";
-import { DownOutlined, MenuOutlined } from "@ant-design/icons";
+import { CommentOutlined, CustomerServiceOutlined, DownOutlined, MenuOutlined } from "@ant-design/icons";
 import LeftMenu from "./LeftMenu";
 import RightMenu from "./RightMenu";
 import { Content, Header } from "antd/es/layout/layout";
 import DateTime from "./DateTime";
 import SearchBar from "./SearchBar";
 import PillNav from "./PillNav";
+import PillNavMobile from "./PillNavMobile";
 
 const Layout = () => {
 
@@ -21,18 +22,22 @@ const Layout = () => {
         setVisible(false);
     }, [location]);
 
-    const items = [
+    const navItems = [
         {
-            key: '1',
-            label: 'Item 1',
+            key: '/',
+            label: 'Feed',
         },
         {
-            key: '2',
-            label: 'Item 2',
+            key: '/category/entertainment',
+            label: 'Entertainment',
         },
         {
-            key: '3',
-            label: 'Item 3',
+            key: '/category/sports',
+            label: 'Sports',
+        },
+        {
+            key: '/category/business',
+            label: 'Business',
         },
     ];
     return (
@@ -91,11 +96,12 @@ const Layout = () => {
                 >
 
                     <div className="hide-on-mobile"><PillNav /></div>
+
                     <div>  <Dropdown
                         menu={{
-                            items,
+                            items: navItems,
                             selectable: true,
-                            defaultSelectedKeys: ['3'],
+                            defaultSelectedKeys: ['/'],
                         }}
                     >
                         <Button size={'small'} shape={'round'} type="primary">

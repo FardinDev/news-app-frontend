@@ -1,20 +1,17 @@
-import { LikeOutlined, MessageOutlined, StarOutlined } from '@ant-design/icons';
-import { Avatar, Button, Card, Col, Drawer, List, Row, Skeleton, Space, Tag, Typography } from 'antd';
+
+import { Avatar, Button, Card, Col, Drawer, List, Row, Skeleton, Tag } from 'antd';
 import Meta from 'antd/es/card/Meta';
 import Paragraph from 'antd/es/typography/Paragraph';
 import Title from 'antd/es/typography/Title';
 import React, { useEffect, useState } from 'react';
+
+import { data as fakeData } from '../../fakedata/main'
 const count = 10;
 const fakeDataUrl = `https://randomuser.me/api/?results=${count}&inc=name,gender,email,nat,picture&noinfo`;
 
 
-const { Text } = Typography;
-const IconText = ({ icon, text }) => (
-    <Space>
-        {React.createElement(icon)}
-        {text}
-    </Space>
-);
+
+
 const InfiniteList = () => {
     const [initLoading, setInitLoading] = useState(true);
     const [loading, setLoading] = useState(false);
@@ -31,21 +28,6 @@ const InfiniteList = () => {
         setOpen(false);
         // setSelectedItem(null)
     };
-
-
-    let news = {
-        "source": {
-            "id": "bbc-news",
-            "name": "BBC News"
-        },
-        "author": "BBC News",
-        "title": "Chris Mason: The ghost of Boris Johnson haunts Rishi Sunak",
-        "description": "The ex-PM, with a life-long knack for throwing stones and grabbing attention, is doing just that.",
-        "url": "http://www.bbc.co.uk/news/uk-politics-65864011",
-        "imageUrl": "https://ichef.bbci.co.uk/news/1024/branded_news/17BF3/production/_128676279_5f33b9a56bbbb9e2e63542da0cd8cf5eb5cd88890_0_5310_37961000x715.jpg",
-        "publishedAt": "2023-06-10T07:37:18.8449898Z",
-        "body": "Chaos, uncorked. Again.\r\nIn his seven months as prime minister, the most notable characteristic Rishi Sunak has brought to government is - relatively speaking at least - stability.\r\nBut 2022 - or muc… [+2472 chars]"
-    }
 
 
     useEffect(() => {
@@ -65,10 +47,11 @@ const InfiniteList = () => {
             .then((res) => res.json())
             .then((res) => {
                 setInitLoading(false);
-                setData(res.results);
-                setList(res.results);
+                setData(fakeData?.data);
+                setList(fakeData?.data);
             });
     }, []);
+
     const onLoadMore = () => {
         setLoading(true);
         setList(
@@ -83,7 +66,7 @@ const InfiniteList = () => {
         fetch(fakeDataUrl)
             .then((res) => res.json())
             .then((res) => {
-                const newData = data.concat(res.results);
+                const newData = data.concat(fakeData?.data);
                 setData(newData);
                 setList(newData);
                 setLoading(false);
@@ -103,7 +86,7 @@ const InfiniteList = () => {
                     lineHeight: '32px',
                 }}
             >
-                <Button onClick={onLoadMore}>loading more</Button>
+                <Button onClick={onLoadMore} shape={'round'}>Load more articles</Button>
             </div>
         ) : null;
     return (
@@ -118,16 +101,16 @@ const InfiniteList = () => {
                 renderItem={(item) => (
                     <List.Item
                         onClick={() => { setSelectedItem(item); showDrawer() }}
-                        actions={[<Tag color={'green'}>New</Tag>, <a href='test' key="list-loadmore-more">more</a>]}
+                        // actions={[<Tag color={'green'}>New</Tag>]}
                         style={{ padding: 14, cursor: 'pointer' }}
                     >
                         <Skeleton avatar title={false} loading={item.loading} active>
 
                             <List.Item.Meta
 
-                                avatar={<Avatar src={item.picture.large} />}
-                                title={<a href="https://ant.design">{item.name?.last}</a>}
-                                description="Ant Design, a design language for background applications, is refined by Ant UED Team"
+                                avatar={<Avatar src={`https://ui-avatars.com/api/?background=000000&color=ffffff&length=3&font-size=0.33&name=${item?.author}`} />}
+                                title={<a target='_blank'>{item?.title}</a>}
+                                description={item?.description}
                             />
 
 
@@ -138,26 +121,34 @@ const InfiniteList = () => {
                 }
             />
             <Drawer
-                title={news?.title}
+                title={selectedItem?.title}
                 placement={'bottom'}
                 closable={true}
                 onClose={onClose}
                 open={open}
                 key={'bottom'}
-                height={'70%'}
+                height={'90%'}
             >
+                {/* 
+<Col xs={24} lg={8}>
+                        <img
+                            width={300}
+                            class="hide-on-mobile"
+                            alt="logo"
+                            src={selectedItem?.imageUrl}
+                        />
+                    </Col> */}
 
                 <Row justify={'space-between'} align={'middle'}>
                     <Col xs={24} lg={16}>
                         <Card
-
                             cover={
                                 <img
                                     alt="example"
-                                    src={news?.imageUrl}
+                                    src={selectedItem?.imageUrl}
                                 />}
                             actions={[
-                                <a href={news?.url} target='_blank'>
+                                <a href={selectedItem?.url} target='_blank' rel="noreferrer">
 
                                     Read on site
                                 </a>
@@ -165,8 +156,8 @@ const InfiniteList = () => {
                         >
                             <Meta
 
-                                // avatar={<Avatar src={news.imageUrl} />}
-                                title={<Title level={5}>{news?.title}</Title>}
+                            // avatar={<Avatar src={selectedItem.imageUrl} />}
+                            // title={<Title level={5}>{selectedItem?.title}</Title>}
 
                             />
 
@@ -174,25 +165,17 @@ const InfiniteList = () => {
                                 ellipsis={{
                                     rows: 3,
                                     expandable: true,
-                                    suffix: '-' + news?.source?.name,
+                                    suffix: '-' + selectedItem?.source?.name,
                                     onEllipsis: (ellipsis) => {
                                         console.log('Ellipsis changed:', ellipsis);
                                     },
                                 }}
-                                title={`${news?.body}--William Shakespeare`}
+                                title={`${selectedItem?.body}--William Shakespeare`}
                             >
-                                {news?.body}
+                                {selectedItem?.body}
                             </Paragraph>
 
                         </Card>
-                    </Col>
-                    <Col xs={24} lg={8}>
-                        <img
-                            width={300}
-                            class="hide-on-mobile"
-                            alt="logo"
-                            src={news.imageUrl}
-                        />
                     </Col>
                 </Row>
 

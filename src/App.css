@@ -108,6 +108,10 @@
   min-height: 350px;
 }
 
+.hide-on-desktop {
+  display: none !important;
+}
+
 @media (max-width: 767px) {
   .menuButton {
     display: block;
@@ -152,6 +156,11 @@
     display: flex;
     justify-content: center;
   }
+
+  .hide-on-desktop {
+    display: block !important;
+  }
+
 
 }
 

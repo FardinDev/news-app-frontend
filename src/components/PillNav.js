@@ -1,7 +1,7 @@
 import { Button, Space } from 'antd'
 import React, { useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom';
-import { useParams } from 'react-router-dom';
+
 
 
 function RenderButton({ path, title }) {
@@ -11,14 +11,7 @@ function RenderButton({ path, title }) {
 }
 function PillNav() {
 
-    const params = useParams();
-
-    const [size, setSize] = useState(20)
-
-
-
-
-
+    const [size] = useState(20)
 
     return (
         <div className='pill-nav'>
