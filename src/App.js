@@ -11,6 +11,7 @@ import SignIn from './pages/auth/SignIn';
 import SignUp from './pages/auth/SignUp';
 
 import UserProvider from './context/UserContext';
+import DataProvider from './context/DataContext';
 import NotFoundPage from './pages/NotFoundPage';
 import Category from './pages/Category';
 
@@ -19,39 +20,42 @@ function App() {
   return (
 
     <UserProvider>
-      <BrowserRouter>
-        <Routes>
-          <Route element={<GuestRoutes />}>
-            <Route path="/sign-in" element={<SignIn />} />
-            <Route path="/sign-up" element={<SignUp />} />
-          </Route>
+      <DataProvider>
 
-          <Route path="*" element={<NotFoundPage />} />
-          <Route path="/" element={<Layout />} exact>
-            <Route index element={<Home />} />
-            <Route path="details/:newsId"
-              loader={({ params }) => {
-                console.log(params.newsId);
-              }}
-              element={<Details />} />
-            <Route path="/category/:topic"
-              loader={({ params }) => {
-
-                console.log('====================================');
-                console.log(params.topic);
-                console.log('====================================');
-
-              }}
-              element={<Category />} />
-
-            <Route element={<ProtectedRoutes />}>
-              <Route path="favorites" element={<Favorites />} />
+        <BrowserRouter>
+          <Routes>
+            <Route element={<GuestRoutes />}>
+              <Route path="/sign-in" element={<SignIn />} />
+              <Route path="/sign-up" element={<SignUp />} />
             </Route>
 
+            <Route path="*" element={<NotFoundPage />} />
+            <Route path="/" element={<Layout />} exact>
+              <Route index element={<Home />} />
+              <Route path="details/:newsId"
+                loader={({ params }) => {
+                  console.log(params.newsId);
+                }}
+                element={<Details />} />
+              <Route path="/category/:topic"
+                loader={({ params }) => {
 
-          </Route>
-        </Routes>
-      </BrowserRouter>
+                  console.log('====================================');
+                  console.log(params.topic);
+                  console.log('====================================');
+
+                }}
+                element={<Category />} />
+
+              <Route element={<ProtectedRoutes />}>
+                <Route path="favorites" element={<Favorites />} />
+              </Route>
+
+
+            </Route>
+          </Routes>
+        </BrowserRouter>
+      </DataProvider>
     </UserProvider>
 
   );

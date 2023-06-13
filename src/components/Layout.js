@@ -1,5 +1,5 @@
 import { Outlet, useLocation } from "react-router-dom";
-import { Layout as AntLayout, Button, Drawer, Dropdown, FloatButton, Space, } from "antd";
+import { Layout as AntLayout, Button, Drawer, Dropdown, FloatButton, Modal, Space, } from "antd";
 import { useEffect, useState } from "react";
 import { CommentOutlined, CustomerServiceOutlined, DownOutlined, MenuOutlined } from "@ant-design/icons";
 import LeftMenu from "./LeftMenu";
@@ -9,10 +9,12 @@ import DateTime from "./DateTime";
 import SearchBar from "./SearchBar";
 import PillNav from "./PillNav";
 import PillNavMobile from "./PillNavMobile";
+import FilterContents from "./FilterContents";
 
 const Layout = () => {
 
     const [visible, setVisible] = useState(false);
+    const [openFilterModal, setOpenFilterModal] = useState(false);
     const showDrawer = () => {
         setVisible(!visible);
     };
@@ -23,22 +25,7 @@ const Layout = () => {
     }, [location]);
 
     const navItems = [
-        {
-            key: '/',
-            label: 'Feed',
-        },
-        {
-            key: '/category/entertainment',
-            label: 'Entertainment',
-        },
-        {
-            key: '/category/sports',
-            label: 'Sports',
-        },
-        {
-            key: '/category/business',
-            label: 'Business',
-        },
+
     ];
     return (
         <Content>
@@ -97,14 +84,17 @@ const Layout = () => {
 
                     <div className="hide-on-mobile"><PillNav /></div>
 
-                    <div>  <Dropdown
+                    <div className="hide-on-desktop">  <Dropdown
                         menu={{
                             items: navItems,
                             selectable: true,
                             defaultSelectedKeys: ['/'],
+
                         }}
                     >
-                        <Button size={'small'} shape={'round'} type="primary">
+                        <Button size={'small'} shape={'round'} type="primary" onClick={() => {
+                            setOpenFilterModal(true);
+                        }}>
                             <Space>
                                 Filter Feed
                                 <DownOutlined />
@@ -120,6 +110,15 @@ const Layout = () => {
                 {/* <Divider style={{ margin: 0 }} /> */}
                 <Outlet />
             </Content>
+
+            <Modal
+                open={openFilterModal}
+                onCancel={() => setOpenFilterModal(false)}
+
+            >
+
+                <FilterContents ghost={true} />
+            </Modal>
 
         </Content>
     )
